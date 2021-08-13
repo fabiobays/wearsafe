@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .action{
+      display: flex;
+  }
+
+  .action .mat-form-field{
+      align-self: flex-start;
+  }
+
+  .action .remove{
+      align-self: center;
+      margin-left: auto;
+
+  }
+  
+  td, th {
+    width: 25%;
+    text-align: left;
+  }
+  
+  .table-container{
+    width: 80%; 
+    margin: 0px auto;     
+}
