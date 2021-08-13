@@ -7,7 +7,7 @@ Install Angular-CLI
 
 ### Running Frontend
 # Access frontend folder
-$ cd frontend/best-restaurant
+$ cd wearsafe
 # Install npm modules
 $ npm install
 # Run angular app locally
