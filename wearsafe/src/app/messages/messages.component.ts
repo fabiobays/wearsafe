@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Message } from '../types';
 import { MessageService } from '../_services/message.service';
 import {SelectionModel} from '@angular/cdk/collections';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-messages',
@@ -13,11 +14,14 @@ import {SelectionModel} from '@angular/cdk/collections';
 })
 export class MessagesComponent implements OnInit {
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService,
+              private _snackBar: MatSnackBar) { }
 
   displayedColumns: string[] = ['select','id','text', 'date'];
   dataSource: MatTableDataSource<any>;
   error;
+  loading = false;
+  loadingRemoval = false;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -65,25 +69,38 @@ export class MessagesComponent implements OnInit {
   }
 
   loadMessages(){
+    this.loading = true;
     this.messageService.get().subscribe(messages => {
+      if(!messages){
+        this.loading = false;
+        this.dataSource = new MatTableDataSource([]);
+        return;
+      }
       for (const key of Object.keys(messages)) {
         messages[key].key = key;        
       }
       this.dataSource = new MatTableDataSource(Object.values(messages));
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.loading = false;
+      
     });
   }
 
   remove(){    
+    this.loadingRemoval = true;
     let arrayOfPromises = [];
     for (const item of this.selection.selected) {
       arrayOfPromises.push(this.messageService.delete(item.key));
     }
     Promise.all(arrayOfPromises).then(values => {
+      this.loadingRemoval = false;          
+      this.selection.clear();
       this.loadMessages();
     }).catch(error => {
-      this.error = error;
+      this._snackBar.open(error.message,'dismiss',{duration:  5000, panelClass: ['error']});
+      this.selection.clear();
+      this.loadingRemoval = false;
     })
   }
 }

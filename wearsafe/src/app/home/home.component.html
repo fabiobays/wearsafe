@@ -4,13 +4,15 @@
             <mat-form-field class="form-field" appearance="outline">
                 <mat-label> Enter the text to be saved
                 </mat-label>
-                <textarea matInput formControlName="text" required></textarea>
+                <textarea matInput formControlName="text"></textarea>
                 <mat-error *ngIf="textForm.controls.text.touched && textForm.controls.text.invalid">
                     <span *ngIf="textForm.controls.text.errors.required">This field is mandatory.</span>
                     <span *ngIf="textForm.controls.text.errors.html">This field cannot contain html tags.</span>
+                    <span *ngIf="textForm.controls.text.errors.maxlength">This field must have less then 140 characters.</span>
                 </mat-error>
             </mat-form-field>            
-            <button mat-raised-button color="primary" type="submit">Save Text</button>
+            <button mat-raised-button color="primary" type="submit" *ngIf="!loading">Save Text</button>           
         </form>
     </div>
+    <mat-spinner *ngIf="loading"></mat-spinner>
 </div>

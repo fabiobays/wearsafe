@@ -5,7 +5,8 @@
             <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Message" #input>
         </mat-form-field>
         <div class="remove">
-            <button mat-fab color="primary" aria-label="Remove messages" *ngIf="!selection.isEmpty();" (click)="remove()">
+            <mat-spinner *ngIf="loadingRemoval"></mat-spinner>
+            <button mat-fab color="primary" aria-label="Remove messages" *ngIf="!selection.isEmpty() && !loadingRemoval" (click)="remove()" >
                 <mat-icon>delete</mat-icon>
             </button>
         </div>

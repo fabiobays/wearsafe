@@ -1,1 +1,17 @@
+
+<mat-toolbar color="primary">
+    <button mat-button routerLink="/">
+        <mat-icon>home</mat-icon> 
+        {{title}}
+    </button>
+
+    <span class="fill-remaining-space"></span>
+
+    <div fxLayout="row" fxHide fxShow.gt-sm>
+        <button mat-button routerLink="/">Home</button> 
+        <button mat-button routerLink="/messages">Delete Messages</button>        
+    </div>
+</mat-toolbar>
+
+
 <router-outlet></router-outlet>

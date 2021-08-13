@@ -6,3 +6,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .container {
     text-align: center;
 }
+
+mat-spinner {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+

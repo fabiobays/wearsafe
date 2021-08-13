@@ -18,6 +18,11 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatIconModule} from '@angular/material/icon';
 import { HomeComponent } from './home/home.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 
 
@@ -31,6 +36,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -45,7 +51,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatSortModule,
     MatTableModule,
     MatIconModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatToolbarModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
